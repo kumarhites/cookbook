@@ -1,7 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { AiOutlineDelete } from "react-icons/ai";
+import { FiEdit2 } from "react-icons/fi";
+import { useData } from "../../contexts/DataContext";
 
 const RecipeCard = ({ recipe }) => {
+  const { deleteRecipe } = useData();
   return (
     <div className="card max-w-[340px] bg-zinc-900 shadow-xl">
       <figure>
@@ -21,11 +25,20 @@ const RecipeCard = ({ recipe }) => {
           )}
         </div>
 
-        <NavLink to={`/recipe/${recipe?.id}`}>
-          <div className="card-actions justify-end mt-5">
+        <div className="card-actions justify-end mt-5">
+          <NavLink to={`/recipe/${recipe?.id}`}>
             <div className="btn btn-outline btn-success">See full recipe</div>
-          </div>
-        </NavLink>
+          </NavLink>
+          <button className="btn btn-outline btn-accent">
+            <FiEdit2 size={24} />
+          </button>
+          <button
+            className="btn btn-outline btn-error"
+            onClick={() => deleteRecipe(recipe?.id)}
+          >
+            <AiOutlineDelete size={24} />
+          </button>
+        </div>
       </div>
     </div>
   );

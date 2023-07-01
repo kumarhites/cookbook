@@ -4,6 +4,8 @@ export const recipeReducer = (state, { type, payload }) => {
       return { ...state, recipes: payload };
     case "SEARCH":
       return { ...state, recipes: payload };
+    case "DELETE_RECIPE":
+      return { ...state, recipes: payload };
     default:
       return state;
   }
