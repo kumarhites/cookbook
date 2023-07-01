@@ -1,10 +1,17 @@
-import React from "react";
-import icon from "../assets/cookbook.png";
 import { NavLink } from "react-router-dom";
+import { useData } from "../contexts/DataContext";
+import icon from "../assets/cookbook.png";
 
 const SearchBar = () => {
+  const { search, setSearch } = useData();
+
   const handleSearchSubmit = (e) => {
     e.preventDefault();
+    // Any additional logic for submitting the search form
+  };
+
+  const searchFilter = (e) => {
+    setSearch(e.target.value.toLowerCase());
   };
 
   return (
@@ -17,6 +24,8 @@ const SearchBar = () => {
           type="text"
           placeholder="Search Recipes"
           className="input input-bordered input-accent w-full"
+          onChange={searchFilter}
+          value={search || ""}
         />
       </form>
     </div>
